@@ -1254,6 +1254,13 @@ resource "azurerm_virtual_machine" "test" {
 	admin_password = "Password1234!"
     }
 
+    diagnostics_profile {
+	boot_diagnostics {
+	    enabled = true
+    	    storage_uri = "${azurerm_storage_account.test.primary_blob_endpoint}"
+	}
+    }
+
     os_profile_windows_config {
         winrm {
 	  protocol = "http"
